@@ -18,8 +18,8 @@ const CartDropdown = () => {
                         )
                     })
                 }
-                <Button>Go to checkout</Button>
             </div>
+            <Button>checkout</Button>
         </div>
     )
 };
