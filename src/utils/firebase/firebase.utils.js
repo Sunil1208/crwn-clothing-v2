@@ -18,6 +18,8 @@ import {
     setDoc,
     collection,
     writeBatch,
+    query,
+    getDocs,
 } from 'firebase/firestore';
 
 //eslint-disable-next-line
@@ -90,4 +92,18 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 
     await batch.commit();
     console.log("done")
+}
+
+export const getCategoriesAndDocuments = async () => {
+    const collectionRef = collection(db, 'categories');
+    const q = query(collectionRef);
+
+    const querySnapshot = await getDocs(q);
+    const categoryMap = querySnapshot.docs.reduce((accumulator, docSnapshot) => {
+        const { title, items } = docSnapshot.data();
+        accumulator[title.toLowerCase()] = items;
+        return accumulator;
+    }, {});
+
+    return categoryMap;
 }
