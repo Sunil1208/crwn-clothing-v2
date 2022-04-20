@@ -1,4 +1,4 @@
-import React, { useContext, Fragement } from 'react';
+import React, { useContext } from 'react';
 import CategoryPreview from '../../components/category-preview/category-preview.component';
 import { CategoriesContext } from '../../contexts/categories.context';
 
@@ -6,7 +6,7 @@ import { CategoriesContext } from '../../contexts/categories.context';
 const CategoriesPreview = () => {
     const { categoriesMap } = useContext(CategoriesContext);
     return(
-        <Fragement>
+        <div>
             {
                 Object.keys(categoriesMap).map((title, idx) => {
                     const products = categoriesMap[title];
@@ -15,7 +15,7 @@ const CategoriesPreview = () => {
                     )
                 })
             }
-        </Fragement>
+        </div>
     )
 };
 
