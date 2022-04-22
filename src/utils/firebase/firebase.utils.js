@@ -40,10 +40,8 @@ export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth, additonalInformation={}) => {
     const userDocRef = doc(db, "users", userAuth.uid);
-    console.log("userDocRef", userDocRef);
 
     const userSnapshot = await getDoc(userDocRef);
-    console.log("user snap shot is ", userSnapshot);
 
     if(!userSnapshot.exists()){
         const { displayName, email, photoURL } = userAuth;
@@ -91,7 +89,6 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
     });
 
     await batch.commit();
-    console.log("done")
 }
 
 export const getCategoriesAndDocuments = async () => {
