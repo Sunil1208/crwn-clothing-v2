@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { onAuthStateChangedListener, createUserDocumentFromAuth } from './utils/firebase/firebase.utils';
+import { setCurrentUser } from './store/user/user.action';
 
 import Home from './routes/home/home.component';
 import Navigation from './routes/navigation/navigation.component';
@@ -9,6 +13,22 @@ import Checkout from './routes/checkout/checkout.component';
 
 
 const App = () => {
+  const dispatch = useDispatch();
+  console.log('dispatch is ', dispatch)
+
+  useEffect(() => {
+    const unsubscribe =  onAuthStateChangedListener((user) => {
+      console.log("user is ", user)
+        if(user){
+            createUserDocumentFromAuth(user);
+        }
+        dispatch(setCurrentUser(user));
+    });
+
+    return unsubscribe;
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <Routes>
       <Route path='/' element={<Navigation />} >
