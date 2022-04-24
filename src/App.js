@@ -14,11 +14,9 @@ import Checkout from './routes/checkout/checkout.component';
 
 const App = () => {
   const dispatch = useDispatch();
-  console.log('dispatch is ', dispatch)
 
   useEffect(() => {
     const unsubscribe =  onAuthStateChangedListener((user) => {
-      console.log("user is ", user)
         if(user){
             createUserDocumentFromAuth(user);
         }
