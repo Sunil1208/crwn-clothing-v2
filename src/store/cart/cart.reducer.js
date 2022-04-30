@@ -22,16 +22,6 @@ export const cartReducer = (state = INITIAL_STATE, action = {}) => {
                 ...state,
                 isCartOpen: payload
             }
-        case CART_ACTION_TYPES.SET_CART_COUNT:
-            return {
-                ...state,
-                cartCount: payload
-            }
-        case CART_ACTION_TYPES.SET_CART_TOTAL:
-            return {
-                ...state,
-                cartTotal: payload
-            }
         default:
             return state;
     }
